@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07120d">
+  <meta name="description" content="Un jardín animado de flores amarillas hecho con amor.">
+  <title>Flores amarillas para vos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="loveSong" src="assets/nuestra-musica.mp3" loop preload="auto"></audio>
+  <canvas id="sky" aria-hidden="true"></canvas>
+  <div class="moon" aria-hidden="true"></div>
+  <div class="mist mist-one" aria-hidden="true"></div>
+  <div class="mist mist-two" aria-hidden="true"></div>
+
+  <main>
+    <section class="message" aria-labelledby="title">
+      <p class="eyebrow">21 DE SEPTIEMBRE</p>
+      <h1 id="title">Para vos,<br><span>flores amarillas</span></h1>
+      <p class="subtitle">Porque hay personas que iluminan la vida<br>de la misma forma que el sol ilumina cada pétalo.</p>
+      <button id="reveal" type="button"><span>Descubrí tu mensaje</span><i>✦</i></button>
+      <p class="hint">Mové el cursor o tocá la pantalla</p>
+    </section>
+
+    <section class="garden" id="garden" aria-label="Jardín animado de flores amarillas"></section>
+  </main>
+
+  <button class="music-control" id="music" type="button" aria-label="Activar música">
+    <span class="music-icon">♫</span><span id="musicText">Música</span>
+    <i class="equalizer"><b></b><b></b><b></b></i>
+  </button>
+
+  <section class="memories" id="memories" aria-hidden="true">
+    <canvas id="petals" aria-hidden="true"></canvas>
+    <button class="memories-close" id="memoriesClose" aria-label="Volver al jardín">×</button>
+    <div class="memories-copy">
+      <div class="heart-orbit" aria-hidden="true"><span>♥</span><i></i><b></b></div>
+      <p class="eyebrow">UN PEDACITO DE NUESTRA HISTORIA</p>
+      <h2>Entre todas las flores,<br><em>siempre te elegiría a vos</em></h2>
+      <p>Hay recuerdos que no caben en una foto,<br>pero una foto puede hacer que vuelvan todos.</p>
+    </div>
+    <div class="photo-stage">
+      <figure class="photo active"><img src="assets/foto-1.jpeg" alt="Un recuerdo especial"><figcaption>Tu esencia hace bonito cada momento</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-2.jpeg" alt="Un recuerdo especial"><figcaption>Tu mirada tiene su propia luz</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-3.jpeg" alt="Collage de recuerdos especiales"><figcaption>Mis momentos favoritos llevan tu sonrisa</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-4.jpeg" alt="Un recuerdo especial"><figcaption>En este universo, mi lugar favorito es junto a vos</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-5.jpeg" alt="Collage de recuerdos especiales"><figcaption>Cada versión tuya tiene algo que me encanta</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-6.jpeg" alt="Un recuerdo especial"><figcaption>Hasta las estrellas se quedan pequeñas frente a tu luz</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-7.jpeg" alt="Un recuerdo especial"><figcaption>Tu belleza vive en cada pequeño detalle</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-8.jpeg" alt="Collage de recuerdos especiales"><figcaption>Diez fotos, mil recuerdos y un solo corazón</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-9.jpeg" alt="Un recuerdo especial"><figcaption>Hay instantes que quisiera guardar para siempre</figcaption></figure>
+      <figure class="photo"><img src="assets/foto-10.jpeg" alt="Un recuerdo especial"><figcaption>Sos mi casualidad favorita en todo el universo</figcaption></figure>
+      <div class="photo-glow"></div>
+    </div>
+    <div class="dots" aria-label="Elegir fotografía"><button class="active" aria-label="Foto 1"></button><button aria-label="Foto 2"></button><button aria-label="Foto 3"></button><button aria-label="Foto 4"></button><button aria-label="Foto 5"></button><button aria-label="Foto 6"></button><button aria-label="Foto 7"></button><button aria-label="Foto 8"></button><button aria-label="Foto 9"></button><button aria-label="Foto 10"></button></div>
+    <p class="final-note">Que hoy recibas flores amarillas,<br>y siempre razones para sonreír. <span>♡</span></p>
+  </section>
+
+  <div class="letter" id="letter" role="dialog" aria-modal="true" aria-labelledby="letter-title" aria-hidden="true">
+    <div class="letter-card">
+      <button class="close" id="close" aria-label="Cerrar mensaje">×</button>
+      <div class="small-flower">🌻</div>
+      <p class="letter-date">HOY Y SIEMPRE</p>
+      <h2 id="letter-title">Que nunca te falten<br>días llenos de luz</h2>
+      <div class="line"></div>
+      <p>Estas flores no se marchitan, porque fueron hechas para recordarte que tu sonrisa puede convertir cualquier día común en primavera.</p>
+      <p class="signature">Con mucho cariño ♡</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
