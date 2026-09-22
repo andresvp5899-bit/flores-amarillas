@@ -50,8 +50,10 @@ addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelector('#clos
 
 // Galería automática
 const photos=[...document.querySelectorAll('.photo')],dots=[...document.querySelectorAll('.dots button')];let currentPhoto=0;
-function showPhoto(n){photos[currentPhoto].classList.remove('active');photos[currentPhoto].classList.add('leaving');dots[currentPhoto].classList.remove('active');setTimeout(()=>photos.forEach(p=>p.classList.remove('leaving')),1000);currentPhoto=(n+photos.length)%photos.length;photos[currentPhoto].classList.add('active');dots[currentPhoto].classList.add('active')}
+function showPhoto(n){photos[currentPhoto].classList.remove('active');photos[currentPhoto].classList.add('leaving');dots[currentPhoto].classList.remove('active');setTimeout(()=>photos.forEach(p=>p.classList.remove('leaving')),1000);currentPhoto=(n+photos.length)%photos.length;photos[currentPhoto].classList.add('active');dots[currentPhoto].classList.add('active');document.querySelector('#photoNumber').textContent=String(currentPhoto+1).padStart(2,'0')}
 dots.forEach((d,i)=>d.addEventListener('click',()=>showPhoto(i)));setInterval(()=>{if(memories.classList.contains('open'))showPhoto(currentPhoto+1)},4300);
+document.querySelector('#photoPrev').addEventListener('click',()=>showPhoto(currentPhoto-1));
+document.querySelector('#photoNext').addEventListener('click',()=>showPhoto(currentPhoto+1));
 
 // Canción elegida para esta página
 const loveSong=document.querySelector('#loveSong');let isPlaying=false;loveSong.volume=.82;
@@ -65,3 +67,28 @@ function startPetals(){petals.width=innerWidth;petals.height=innerHeight;if(!fla
 function drawPetals(){pctx.clearRect(0,0,petals.width,petals.height);flakes.forEach((f,i)=>{f.y+=f.v;f.x+=Math.sin(f.y*.012)*.35;f.w+=.025;if(f.y>innerHeight+10){f.y=-10;f.x=Math.random()*innerWidth}pctx.save();pctx.translate(f.x,f.y);pctx.rotate(f.w);pctx.fillStyle=i%5===0?'rgba(255,120,145,.7)':'rgba(255,210,45,.7)';pctx.beginPath();if(i%5===0){pctx.moveTo(0,3);pctx.bezierCurveTo(-10,-4,-6,-12,0,-6);pctx.bezierCurveTo(6,-12,10,-4,0,3)}else{pctx.ellipse(0,0,f.r,f.r*.45,0,0,Math.PI*2)}pctx.fill();pctx.restore()});requestAnimationFrame(drawPetals)}drawPetals();
 
 resize();plantGarden();draw();addEventListener('resize',()=>{resize();plantGarden()});
+
+// Entrada cinematográfica: el clic permite iniciar el audio en todos los navegadores.
+const cinemaIntro=document.querySelector('#cinemaIntro');
+document.querySelector('#enterUniverse').addEventListener('click',e=>{
+  document.body.classList.add('entered');cinemaIntro.classList.add('hidden');startMusic();
+  sparkle(innerWidth/2,innerHeight/2,34);burstHearts(innerWidth/2,innerHeight/2);
+  setTimeout(()=>cinemaIntro.remove(),1400);
+});
+
+// Frases que convierten la portada en un mensaje vivo.
+const phrases=['Sos luz incluso en mis noches más oscuras.','Mi coincidencia favorita en todo el universo.','Donde vos sonreís, siempre es primavera.','Diez fotos, mil recuerdos y un solo corazón.'];
+let phraseIndex=0;const changingPhrase=document.querySelector('#changingPhrase');
+setInterval(()=>{if(!document.body.classList.contains('entered'))return;changingPhrase.classList.add('change');setTimeout(()=>{phraseIndex=(phraseIndex+1)%phrases.length;changingPhrase.textContent=phrases[phraseIndex];changingPhrase.classList.remove('change')},500)},4200);
+
+// Estrellas fugaces aleatorias para dar profundidad al universo.
+function shootingStar(){if(!document.body.classList.contains('entered'))return;const s=document.createElement('i');s.className='shooting-star';s.style.setProperty('--sx',(55+Math.random()*50)+'vw');s.style.setProperty('--sy',(2+Math.random()*35)+'vh');document.querySelector('#shootingStars').appendChild(s);setTimeout(()=>s.remove(),1700)}
+setInterval(shootingStar,3000);
+
+// Sorpresa final.
+const finale=document.querySelector('#finale');
+document.querySelector('#finalSurprise').addEventListener('click',()=>{finale.classList.add('open');finale.setAttribute('aria-hidden','false');for(let i=0;i<7;i++)setTimeout(()=>burstHearts(innerWidth/2,innerHeight/2),i*180)});
+document.querySelector('#finaleClose').addEventListener('click',()=>{finale.classList.remove('open');finale.setAttribute('aria-hidden','true')});
+
+// Deslizar con el dedo para cambiar las fotos.
+let touchStart=0;document.querySelector('.photo-stage').addEventListener('touchstart',e=>touchStart=e.touches[0].clientX,{passive:true});document.querySelector('.photo-stage').addEventListener('touchend',e=>{const distance=e.changedTouches[0].clientX-touchStart;if(Math.abs(distance)>45)showPhoto(currentPhoto+(distance<0?1:-1))},{passive:true});

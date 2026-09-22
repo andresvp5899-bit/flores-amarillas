@@ -12,17 +12,27 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="cinema-intro" id="cinemaIntro">
+    <div class="intro-stars" aria-hidden="true"></div>
+    <div class="intro-flower" aria-hidden="true">🌻</div>
+    <p>Preparé un pequeño universo</p>
+    <h2>solo para vos</h2>
+    <button id="enterUniverse" type="button"><span>Entrar</span><i>♥</i></button>
+    <small>Activá el sonido para vivir la experiencia completa</small>
+  </div>
   <audio id="loveSong" src="assets/nuestra-musica.mp3" loop preload="auto"></audio>
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="moon" aria-hidden="true"></div>
   <div class="mist mist-one" aria-hidden="true"></div>
   <div class="mist mist-two" aria-hidden="true"></div>
+  <div class="shooting-stars" id="shootingStars" aria-hidden="true"></div>
 
   <main>
     <section class="message" aria-labelledby="title">
       <p class="eyebrow">21 DE SEPTIEMBRE</p>
       <h1 id="title">Para vos,<br><span>flores amarillas</span></h1>
       <p class="subtitle">Porque hay personas que iluminan la vida<br>de la misma forma que el sol ilumina cada pétalo.</p>
+      <p class="changing-phrase" id="changingPhrase">Sos luz incluso en mis noches más oscuras.</p>
       <button id="reveal" type="button"><span>Descubrí tu mensaje</span><i>✦</i></button>
       <p class="hint">Mové el cursor o tocá la pantalla</p>
     </section>
@@ -56,9 +66,21 @@
       <figure class="photo"><img src="assets/foto-9.jpeg" alt="Un recuerdo especial"><figcaption>Hay instantes que quisiera guardar para siempre</figcaption></figure>
       <figure class="photo"><img src="assets/foto-10.jpeg" alt="Un recuerdo especial"><figcaption>Sos mi casualidad favorita en todo el universo</figcaption></figure>
       <div class="photo-glow"></div>
+      <button class="photo-arrow prev" id="photoPrev" type="button" aria-label="Foto anterior">‹</button>
+      <button class="photo-arrow next" id="photoNext" type="button" aria-label="Foto siguiente">›</button>
+      <span class="photo-count"><b id="photoNumber">01</b> / 10</span>
     </div>
     <div class="dots" aria-label="Elegir fotografía"><button class="active" aria-label="Foto 1"></button><button aria-label="Foto 2"></button><button aria-label="Foto 3"></button><button aria-label="Foto 4"></button><button aria-label="Foto 5"></button><button aria-label="Foto 6"></button><button aria-label="Foto 7"></button><button aria-label="Foto 8"></button><button aria-label="Foto 9"></button><button aria-label="Foto 10"></button></div>
-    <p class="final-note">Que hoy recibas flores amarillas,<br>y siempre razones para sonreír. <span>♡</span></p>
+    <button class="final-note" id="finalSurprise" type="button">Que hoy recibas flores amarillas,<br>y siempre razones para sonreír. <span>♡</span><small>TOCÁ PARA LA SORPRESA FINAL</small></button>
+  </section>
+
+  <section class="finale" id="finale" aria-hidden="true">
+    <button class="finale-close" id="finaleClose" aria-label="Cerrar">×</button>
+    <div class="constellation-heart" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <p class="eyebrow">EN CUALQUIER UNIVERSO</p>
+    <h2>te volvería a<br><em>elegir a vos</em></h2>
+    <p>No hacen falta fechas especiales para recordarte<br>lo increíble y única que sos.</p>
+    <div class="forever">∞</div>
   </section>
 
   <div class="letter" id="letter" role="dialog" aria-modal="true" aria-labelledby="letter-title" aria-hidden="true">
